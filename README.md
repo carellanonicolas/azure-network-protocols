@@ -1,57 +1,54 @@
-<p align="center">
-<img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
-</p>
+# Network Security Groups (NSGs) and Traffic Inspection in Azure
 
-<h1>Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines</h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
+## Overview
+This repository provides a structured guide to setting up and analyzing network traffic between Azure Virtual Machines using Network Security Groups (NSGs) and Wireshark.
 
+## Prerequisites
+Ensure the following are available before installation:
+- Azure Virtual Machines (Windows 10, Ubuntu 20.04)
+- Remote Desktop Access (RDP)
+- Wireshark for packet analysis
+- Basic networking knowledge (ICMP, SSH, DNS, DHCP, RDP)
 
-<h2>Video Demonstration</h2>
+## Lab Setup
+### Part 1: Virtual Machine Deployment
+1. **Create a Resource Group in Azure.**
+2. **Deploy Virtual Machines:**
+   - Windows 10 VM
+   - Ubuntu 20.04 VM
+   - Ensure both VMs are in the same Virtual Network and Subnet.
+   - Use **username/password** authentication for the Linux VM.
+3. **Verify Connectivity:**
+   - Obtain the private IP address of each VM.
+   - Ensure both VMs can communicate within the Virtual Network.
 
-- ### [YouTube: Azure Virtual Machines, Wireshark, and Network Security Groups](https://www.youtube.com)
+### Part 2: ICMP Traffic Analysis
+1. **Use Remote Desktop to access the Windows 10 VM.**
+2. **Install Wireshark on Windows 10.**
+3. **Start packet capture in Wireshark and filter for ICMP traffic.**
+4. **Ping the Ubuntu VM from Windows and observe packets.**
+5. **Ping a public website (e.g., `www.google.com`) and analyze traffic.**
 
-<h2>Environments and Technologies Used</h2>
+### Part 3: Configuring Network Security Groups
+1. **Initiate a continuous ping from Windows 10 to Ubuntu.**
+2. **Modify the NSG to block inbound ICMP traffic to the Ubuntu VM.**
+3. **Observe traffic in Wireshark and note the ping failure.**
+4. **Re-enable ICMP traffic and verify pings resume.**
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Various Command-Line Tools
-- Various Network Protocols (SSH, RDH, DNS, HTTP/S, ICMP)
-- Wireshark (Protocol Analyzer)
+### Part 4: Observing Network Traffic in Wireshark
+1. **SSH Traffic:**
+   - Filter for SSH traffic in Wireshark.
+   - Use PowerShell to SSH into the Ubuntu VM: `ssh labuser@<private-IP>`.
+   - Observe SSH packet activity.
+2. **DHCP Traffic:**
+   - Filter for DHCP traffic.
+   - Renew the Windows 10 VM's IP: `ipconfig /renew`.
+   - Observe DHCP requests in Wireshark.
+3. **DNS Traffic:**
+   - Filter for DNS traffic.
+   - Use `nslookup google.com` to query DNS.
+   - Observe DNS request/response packets.
+4. **RDP Traffic:**
+   - Filter for RDP traffic (`tcp.port == 3389`).
+   - Observe continuous traffic due to live screen streaming.
 
-<h2>Operating Systems Used </h2>
-
-- Windows 10 (21H2)
-- Ubuntu Server 20.04
-
-<h2>High-Level Steps</h2>
-
-- Step 1
-- Step 2
-- Step 3
-- Step 4
-
-<h2>Actions and Observations</h2>
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
