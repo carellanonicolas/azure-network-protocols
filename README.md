@@ -20,16 +20,16 @@ In this tutorial, I observe various network traffic to and from Azure Virtual Ma
 
 <h2>High-Level Steps</h2>
 
-- Step 1: Create our Resource Group and 2 Virtual Machines (VM) in Microsoft Azure. One with Windows 10 and the other with Ubuntu
-- Step 2: Use Remote Desktop to connect to our Windows 10 Virtual Machine and Install Wireshark 
-- Step 3: Open Wireshark and filter for ICMP traffic only. Retrieve the private IP address of the Ubuntu VM and attempt to ping it from within the Windows 10 VM and     Observe ping requests and replies within Wireshark.
+- Step 1: Create our Resource Group and 2 Virtual Machines (VM) in Microsoft Azure. One with Windows 10 and the other with Ubuntu.
+- Step 2: Use Remote Desktop to connect to our Windows 10 Virtual Machine and Install Wireshark.
+- Step 3: Open Wireshark and filter for ICMP traffic only. Retrieve the private IP address of the Ubuntu VM and attempt to ping it from within the Windows 10 VM. Observe ping requests and replies within Wireshark.
 - Step 4: Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu/Linux VM. Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic. Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity.
-Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using. Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working), then stop the ping activity.
-- Step 5: From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address), observe traffic then exit SSH
-- Step 6: From your Windows 10 VM, attempt to issue your VM a new IP address from the command line (ipconfig /renew) and observe DHCP traffic in Wireshark
-- Step 7: From your Windows 10 VM within a command line, use nslookup command to see what nike.com is and observe DNS traffic in Wireshark
-- Step 8: Observe ongoing RDP traffic (tcp.port == 3389) in Wireshark
-- Clean up, and delete Resource Groups in Azure
+Re-enable ICMP traffic for the Network Security Group your Ubuntu VM is using. Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity, then stop the ping activity.
+- Step 5: From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address), observe traffic then exit SSH.
+- Step 6: From your Windows 10 VM, attempt to issue your VM a new IP address from the command line (ipconfig /renew) and observe DHCP traffic in Wireshark.
+- Step 7: From your Windows 10 VM within a command line, use nslookup command to see what nike.com is and observe DNS traffic in Wireshark.
+- Step 8: Observe ongoing RDP traffic (tcp.port == 3389) in Wireshark.
+- Clean up, and delete Resource Groups in Azure.
 
 <h2>Actions and Observations</h2>
 <p>
@@ -106,7 +106,7 @@ I filtered for DNS (Domain Name System) traffic in Wireshark and used the “nsl
 <p>
 <h3>Step 8: Observe RDP Traffic </h3>
 <p></p>
- Finally, I will filter for RDP (Remote Desk Protocol) traffic by using the TCP port number (tcp.port==3389). RDP is the protocol that allows the remote connection to another computer and complete control of the Graphical User Interface (GUI). RDP traffic was continually generated 
+ Finally, I will filter for RDP (Remote Desk Protocol) traffic by using the TCP port number (tcp.port==3389). RDP is the protocol that allows the remote connection to another computer and complete control of the Graphical User Interface (GUI). RDP traffic was continually generated.
 <br />
 <img src="https://i.imgur.com/bfO6tMe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
